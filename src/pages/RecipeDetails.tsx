@@ -23,17 +23,18 @@ function RecipeDetails() {
   if (!recipe) return <p className="p-6">Loading...</p>;
 
   return (
-    <div className="bg-gray-50 min-h-screen p-6">
+    <div className="bg-gray-50 min-h-screen py-10">
+  <div className="max-w-6xl mx-auto px-4"></div>
+      {/* Back Button */}
       <button
         onClick={() => navigate(-1)}
-        className="mb-4 text-sm text-gray-500 hover:underline"
+        className="mb-6 text-sm text-gray-500 hover:underline"
       >
         ← Back
       </button>
 
-      <div className="grid grid-cols-12 gap-6">
-                <div className="col-span-8 space-y-6">
-          
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<div className="col-span-4 space-y-6"> 
           <div className="bg-white rounded-2xl shadow p-6 grid grid-cols-2 gap-6">
             <img
               src={recipe.strMealThumb}
@@ -41,30 +42,34 @@ function RecipeDetails() {
               className="rounded-xl w-full h-full object-cover"
             />
 
-            <div>
-              <h1 className="text-2xl font-bold mb-3">
-                {recipe.strMeal}
-              </h1>
+            <div className="flex flex-col justify-between">
+              <div>
+                <h1 className="text-4xl font-bold text-gray-900">
+                  {recipe.strMeal}
+                </h1>
 
-              <p className="text-gray-600 text-sm leading-relaxed">
-                {recipe.strInstructions.slice(0, 200)}...
-              </p>
+                <p className="text-gray-600 mt-3 leading-relaxed">
+                  {recipe.strInstructions.slice(0, 200)}...
+                </p>
 
-              <div className="flex gap-2 mt-4 flex-wrap">
-                <span className="bg-gray-100 px-3 py-1 rounded-lg text-sm">
-                  {recipe.strCategory}
-                </span>
-                <span className="bg-gray-100 px-3 py-1 rounded-lg text-sm">
-                  {recipe.strArea}
-                </span>
+                <div className="flex gap-2 mt-4 flex-wrap">
+                  <span className="bg-gray-100 px-3 py-1 rounded-lg text-sm">
+                    {recipe.strCategory}
+                  </span>
+                  <span className="bg-gray-100 px-3 py-1 rounded-lg text-sm">
+                    {recipe.strArea}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
 
           <div className="bg-white rounded-2xl shadow p-6">
-            <h2 className="text-xl font-semibold mb-4">Ingredients</h2>
+            <h2 className="text-xl font-semibold mb-6">
+              Ingredients
+            </h2>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
 
-            <div className="grid grid-cols-3 gap-4">
               {Array.from({ length: 20 }).map((_, i) => {
                 const ingredient = recipe[`strIngredient${i + 1}`];
                 const measure = recipe[`strMeasure${i + 1}`];
@@ -74,16 +79,26 @@ function RecipeDetails() {
                 return (
                   <div
                     key={i}
-                    className="bg-gray-50 rounded-xl p-3 text-center text-sm"
+                    className="bg-gray-50 rounded-xl hover:bg-white hover:shadow transition p-3 flex flex-col items-center text-center border border-gray-100"
                   >
-                    <p className="font-medium">{ingredient}</p>
-                    <p className="text-gray-500">{measure}</p>
+                    {/* Icon */}
+                    <div className="w-10 h-10 mb-2 flex items-center justify-center bg-gray-100 rounded-full">
+                      🥕
+                    </div>
+                    <p className="font-semibold text-gray-800 text-sm">
+                      {ingredient}
+                    </p>
+
+                    <p className="text-gray-500 text-xs mt-1">
+                      {measure}
+                    </p>
                   </div>
                 );
               })}
             </div>
           </div>
 
+          {/* DIRECTIONS */}
           <div className="bg-white rounded-2xl shadow p-6">
             <h2 className="text-xl font-semibold mb-4">
               Cooking Directions
@@ -95,9 +110,13 @@ function RecipeDetails() {
           </div>
         </div>
 
-        <div className="col-span-4 space-y-6">
-                    <div className="bg-white rounded-2xl shadow p-4">
+        {/* RIGHT SIDE */}
+        <div className="lg:col-span-4 space-y-6">
+
+          {/* CHEF */}
+          <div className="bg-white rounded-2xl shadow p-4">
             <h3 className="font-semibold mb-2">Chef</h3>
+
             <div className="flex items-center gap-3">
               <img
                 src="https://i.pravatar.cc/50"
@@ -105,7 +124,7 @@ function RecipeDetails() {
                 className="rounded-full"
               />
               <div>
-                <p className="font-medium">Chef AI</p>
+                <p className="font-medium">Marc Macron</p>
                 <p className="text-sm text-gray-500">
                   Recipe Creator
                 </p>
@@ -117,6 +136,7 @@ function RecipeDetails() {
             <h3 className="font-semibold mb-3">
               You may also like
             </h3>
+
             <div className="space-y-3">
               <img
                 src={recipe.strMealThumb}
@@ -129,7 +149,7 @@ function RecipeDetails() {
         </div>
       </div>
     </div>
-  );
+        );
 }
 
 export default RecipeDetails;
