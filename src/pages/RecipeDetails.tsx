@@ -32,7 +32,6 @@ function RecipeDetails() {
       >
         ← Back
       </button>
-
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
 <div className="col-span-4 space-y-6"> 
           <div className="bg-white rounded-2xl shadow p-6 grid grid-cols-2 gap-6">

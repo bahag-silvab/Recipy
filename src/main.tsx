@@ -1,16 +1,18 @@
-import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter } from 'react-router'
 import './index.css'
-import App from './App.tsx'
 import './index.css';
 import MyRouter from './MyRouter.tsx'
+import { RecipeProvider } from './context/RecipeContext.tsx'
+import React from 'react'
+import { BrowserRouter } from 'react-router-dom';
 
 
 createRoot(document.getElementById('root')!).render(
-  <BrowserRouter>
-    <StrictMode>
+  <React.StrictMode>
+    <BrowserRouter>
+    <RecipeProvider>
       <MyRouter />
-    </StrictMode>
-  </BrowserRouter>,
+    </RecipeProvider>
+    </BrowserRouter>
+  </React.StrictMode>
 )
